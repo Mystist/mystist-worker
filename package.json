@@ -1,22 +1,20 @@
 {
-  "name": "OpenShift-Sample-App",
-  "version": "1.0.0",
-  "description": "OpenShift Sample Application",
+  "name": "mystist",
+  "version": "0.0.0",
+
+  "description": "Mystist App",
   "keywords": [
-    "OpenShift",
-    "Node.js",
-    "application",
-    "openshift"
+    "mystist"
   ],
   "author": {
-    "name": "OpenShift",
-    "email": "ramr@example.org",
-    "url": "http://www.openshift.com/"
+    "name": "Mystist",
+    "email": "gjl87910lq@gmail.com",
+    "url": "http://mystist.github.io/"
   },
-  "homepage": "http://www.openshift.com/",
+  "homepage": "mystist-liber.rhcloud.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/openshift/origin-server"
+    "url": "https://github.com/Mystist/mystist.git"
   },
 
   "engines": {
@@ -25,11 +23,20 @@
   },
 
   "dependencies": {
-    "express": "~3.4.4"
+    "body-parser": "~1.15.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "ejs": "~2.4.1",
+    "express": "~4.13.4",
+    "less-middleware": "1.0.x",
+    "morgan": "~1.7.0",
+    "serve-favicon": "~2.3.0"
   },
   "devDependencies": {},
   "bundleDependencies": [],
 
   "private": true,
-  "main": "server.js"
+  "scripts": {
+    "start": "node ./bin/www"
+  }
 }
