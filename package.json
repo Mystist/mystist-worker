@@ -36,6 +36,7 @@
   "bundleDependencies": [],
 
   "private": true,
+  "main": "app.js",
   "scripts": {
     "start": "node ./bin/www"
   }
