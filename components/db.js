@@ -4,6 +4,7 @@ var Promise = require('ioredis').Promise;
 var redisConfig = undefined;
 if (process.env.NODE_ENV === 'production') {
   redisConfig = 'redis://:ZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5@' + process.env.OPENSHIFT_REDIS_HOST + ':' + process.env.OPENSHIFT_REDIS_PORT + '/0';
+  console.log('****' + redisConfig);
 }
 var redis = new Redis(redisConfig);
 
