@@ -1,7 +1,19 @@
 var uuid = require('uuid');
-var redis = new require('ioredis')();
+var Redis = require('ioredis');
 var Promise = require('ioredis').Promise;
 var parser = require('./parser');
+
+var redisConfig = undefined;
+if (process.env.NODE_ENV === 'production') {
+  redisConfig = {
+    port: process.env.OPENSHIFT_REDIS_PORT,
+    host: process.env.OPENSHIFT_REDIS_HOST,
+    family: 4,
+    password: 'ZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5',
+    db: 0
+  };
+}
+var redis = new Redis(redisConfig);
 
 var dict = {
   '36kr': 'http://36kr.com/feed',
