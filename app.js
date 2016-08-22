@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var schedule = require('./src/schedule');
 var routes = require('./routes/index');
 var api = require('./routes/api');
 
@@ -57,5 +58,6 @@ app.use(function(err, req, res, next) {
   });
 });
 
+schedule.initialize();
 
 module.exports = app;

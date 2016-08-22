@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Mystist</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>Mystist</h1>
+    <p>Welcome to Mystist</p>
+    
+    <ul>
+      <% feeds.forEach(function (feed) { %>
+        <li><a target="_blank" href="<%- feed.feed.link %>"><%= feed.feed.title %></a> [<%- feed.source %>] <small><i><%- moment(feed.feed.date) %></i></small></li>
+      <% }); %>
+    </ul>
+    
+    <p>Counts: <%- feeds.length %></p>
   </body>
 </html>
