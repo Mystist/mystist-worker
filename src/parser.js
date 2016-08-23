@@ -1,3 +1,6 @@
+// Thanks goes to:
+// https://github.com/danmactough/node-feedparser/blob/master/examples/iconv.js
+
 var request = require('request');
 var FeedParser = require('feedparser');
 var Iconv = require('iconv').Iconv;
