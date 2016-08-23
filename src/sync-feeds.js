@@ -2,13 +2,8 @@ var uuid = require('uuid');
 var Redis = require('ioredis');
 var Promise = require('ioredis').Promise;
 var parser = require('./parser');
-
-var redisConfig = undefined;
-if (process.env.NODE_ENV === 'production') {
-  redisConfig = 'redis://:' + process.env.REDIS_PASSWORD + '@' + process.env.OPENSHIFT_REDIS_HOST + ':' + process.env.OPENSHIFT_REDIS_PORT + '/0';
-  console.log('****' + redisConfig);
-}
-var redis = new Redis(redisConfig);
+var redisClientConfig = require('../components/redis-client-config');
+var redis = new Redis(redisClientConfig);
 
 var dict = {
   '36kr': 'http://36kr.com/feed',
@@ -37,16 +32,19 @@ var fetchAll = function (next) {
     var promise = parser.fetchAsync(value);
     promise.then(function (data) {
       data.forEach(function (feed) {
-        var dbKey = 'feed:' + feed.guid;
-        redis.exists(dbKey).then(function (result) {
-          if (!result) {
-            redis.hmset(dbKey, {
-              uuid: uuid.v4(),
-              source: key,
-              feed: JSON.stringify(feed)
-            });
-          }
-        });
+        var dbKey = '';
+        if (feed.guid) {
+          dbKey = 'feed:' + feed.guid;
+          redis.exists(dbKey).then(function (result) {
+            if (!result) {
+              redis.hmset(dbKey, {
+                uuid: uuid.v4(),
+                source: key,
+                feed: JSON.stringify(feed)
+              });
+            }
+          });
+        }
       });
     }).catch(function (err) {
       console.log('ERROR: Failed of fetching data from [' + value + ']');

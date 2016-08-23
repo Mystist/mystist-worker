@@ -9,11 +9,14 @@
     <p>Welcome to Mystist</p>
     
     <ul>
-      <% feeds.forEach(function (feed) { %>
-        <li><a target="_blank" href="<%- feed.feed.link %>"><%= feed.feed.title %></a> [<%- feed.source %>] <small><i><%- moment(feed.feed.date) %></i></small></li>
+      <% feeds.forEach(function (feedObj) { %>
+        <li>
+          <small><i><%- moment(feedObj.feed.date).utcOffset('+0800') %></i></small>
+          <a target="_blank" href="<%- feedObj.feed.link %>"><%= feedObj.feed.title %></a>
+          [<%- feedObj.source %>]
+        </li>
       <% }); %>
     </ul>
-    
-    <p>Counts: <%- feeds.length %></p>
+
   </body>
 </html>

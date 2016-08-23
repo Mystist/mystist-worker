@@ -1,12 +1,7 @@
 var Redis = require('ioredis');
 var Promise = require('ioredis').Promise;
-
-var redisConfig = undefined;
-if (process.env.NODE_ENV === 'production') {
-  redisConfig = 'redis://:' + process.env.REDIS_PASSWORD + '@' + process.env.OPENSHIFT_REDIS_HOST + ':' + process.env.OPENSHIFT_REDIS_PORT + '/0';
-  console.log('****' + redisConfig);
-}
-var redis = new Redis(redisConfig);
+var redisClientConfig = require('./redis-client-config');
+var redis = new Redis(redisClientConfig);
 
 var getAllFeeds = function (done) {
   var feeds = [];
