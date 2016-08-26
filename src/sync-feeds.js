@@ -1,4 +1,5 @@
 var uuid = require('uuid');
+var moment = require('moment');
 var Redis = require('ioredis');
 var Promise = require('ioredis').Promise;
 var parser = require('./parser');
@@ -32,16 +33,26 @@ var fetchAll = function (next) {
     var promise = parser.fetchAsync(value);
     promise.then(function (data) {
       data.forEach(function (feed) {
-        var dbKey = '';
-        if (feed.guid) {
-          dbKey = 'feed:' + feed.guid;
-          redis.exists(dbKey).then(function (result) {
+        var hashKey = '';
+        var setKeyOfTimestamp = '';
+
+        if (feed.guid && feed.date) {
+          hashKey = 'feed:' + feed.guid;
+          setKeyOfTimestamp = 'feed:timestamp';
+
+          redis.exists(hashKey).then(function (result) {
             if (!result) {
-              redis.hmset(dbKey, {
+              redis.hmset(hashKey, {
                 uuid: uuid.v4(),
                 source: key,
                 feed: JSON.stringify(feed)
               });
+            }
+          });
+          // Add timestamp index for feed
+          redis.zscore(setKeyOfTimestamp, feed.guid).then(function (result) {
+            if (!result) {
+              redis.zadd(setKeyOfTimestamp, moment.utc(feed.date).valueOf(), feed.guid);
             }
           });
         }

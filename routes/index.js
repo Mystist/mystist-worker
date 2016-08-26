@@ -5,12 +5,12 @@ var moment = require('moment');
 var db = require('../components/db');
 
 router.get('/', function(req, res, next) {
-  db.getAllFeedsAsync().then(function (data) {
-    data = _.sortBy(data, function (feedObj) {
-      return new Date(feedObj.feed.date).getTime();
-    });
+  var sTimestamp = moment(moment().format('YYYYMMDD')).add(-1, 'day').valueOf();
+  var eTimestamp = moment(moment().format('YYYYMMDD')).valueOf();
+
+  db.getFeedsBetweenTimestampsAsync(sTimestamp, eTimestamp).then(function (data) {
     res.render('index', {
-      feeds: data.reverse(),
+      feeds: data,
       moment: moment
     });
   });
