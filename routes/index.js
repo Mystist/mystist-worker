@@ -5,8 +5,9 @@ var moment = require('moment');
 var db = require('../components/db');
 
 router.get('/', function(req, res, next) {
-  var sTimestamp = moment(moment().utcOffset('+0800').format('YYYYMMDD')).add(-1, 'day').valueOf();
-  var eTimestamp = moment(moment().utcOffset('+0800').format('YYYYMMDD')).valueOf();
+  var currentDateString = moment.utc().utcOffset('+0800').format('YYYYMMDD');
+  var eTimestamp = moment.utc(currentDateString).add(-8, 'hours').valueOf();
+  var sTimestamp = moment.utc(eTimestamp).add(-1, 'day').valueOf();
 
   db.getFeedsBetweenTimestampsAsync(sTimestamp, eTimestamp).then(function (data) {
     res.render('index', {
