@@ -8,7 +8,7 @@ var getAllFeeds = function (done) {
   var feeds = [];
   var promises = [];
 
-  redis.keys('feed:*').then(function (keys) {
+  redis.keys('feed:http*').then(function (keys) {
     keys.forEach(function (key) {
       promises.push(redis.hgetall(key));
     });
