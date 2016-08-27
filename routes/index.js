@@ -5,14 +5,20 @@ var moment = require('moment');
 var db = require('../components/db');
 
 router.get('/', function (req, res, next) {
-  var currentDateString = moment.utc().utcOffset('+0800').format('YYYYMMDD');
+  var date = req.query.date;
+  if (!date) {
+    date = moment();
+  }
+
+  var currentDateString = moment.utc(date).utcOffset('+0800').format('YYYYMMDD');
   var eTimestamp = moment.utc(currentDateString).add(-8, 'hours').valueOf();
   var sTimestamp = moment.utc(eTimestamp).add(-1, 'day').valueOf();
 
   db.getFeedsBetweenTimestampsAsync(sTimestamp, eTimestamp).then(function (data) {
     res.render('index', {
       feeds: data,
-      moment: moment
+      moment: moment,
+      date: date
     });
   });
 });

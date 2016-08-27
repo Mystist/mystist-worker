@@ -7,7 +7,13 @@
   <body>
     <h1>Mystist</h1>
     <p>Welcome to Mystist</p>
-    
+
+    <p>
+      <a href="/?date=<%- moment(date).add(1, 'day').utcOffset('+0800').format('YYYY-MM-DD') %>"><<<<<<</a>
+      <%- moment(date).utcOffset('+0800').format('YYYY-MM-DD') %>
+      <a href="/?date=<%- moment(date).add(-1, 'day').utcOffset('+0800').format('YYYY-MM-DD') %>">>>>>>></a>
+    </p>
+
     <ul>
       <% feeds.forEach(function (feedObj) { %>
         <li>
