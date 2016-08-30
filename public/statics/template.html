@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Semantic-UI Template</title>
+
+    <link href="/semantic/dist/semantic.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="ui vertical stripe segment">
+      <div class="ui text container">
+        <h3 class="ui header">Breaking The Grid, Grabs Your Attention</h3>
+        <p>Instead of focusing on content creation and hard work, we have learned how to master the art of doing nothing by providing massive amounts of whitespace and generic content that can seem massive, monolithic and worth your attention.</p>
+        <a class="ui large button">Read More</a>
+        <h4 class="ui horizontal header divider">
+          <a href="#">Case Studies</a>
+        </h4>
+        <h3 class="ui header">Did We Tell You About Our Bananas?</h3>
+        <p>Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but its really true. It took years of gene splicing and combinatory DNA research, but our bananas can really dance.</p>
+        <a class="ui large button">I'm Still Quite Interested</a>
+      </div>
+    </div>
+
+    
+    <div class="ui four column doubling stackable grid container">
+      <div class="column">
+        <p>1</p>
+        <p>2</p>
+      </div>
+      <div class="column">
+        <p>3</p>
+        <p>4</p>
+      </div>
+      <div class="column">
+        <p>5</p>
+        <p>6</p>
+      </div>
+      <div class="column">
+        <p>7</p>
+        <p>8</p>
+      </div>
+    </div>
+    
+    <div class="ui attached stackable menu">
+      <div class="ui container">
+        <a class="item">
+          <i class="home icon"></i> Home
+        </a>
+        <a class="item">
+          <i class="grid layout icon"></i> Browse
+        </a>
+        <a class="item">
+          <i class="mail icon"></i> Messages
+        </a>
+        <div class="ui simple dropdown item">
+          More
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            <a class="item"><i class="edit icon"></i> Edit Profile</a>
+            <a class="item"><i class="globe icon"></i> Choose Language</a>
+            <a class="item"><i class="settings icon"></i> Account Settings</a>
+          </div>
+        </div>
+        <div class="right item">
+          <div class="ui input"><input type="text" placeholder="Search..."></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="ui raised very padded text container segment">
+      <h2 class="ui header">Dogs Roles with Humans</h2>
+      <p></p>
+      <p></p>
+    </div>
+    
+    <div class="ui vertical segment">
+      <p>1</p>
+    </div>
+    <div class="ui vertical segment">
+      <p>2</p>
+    </div>
+    <div class="ui vertical segment">
+      <p>3</p>
+    </div>
+    
+    <div class="ui label">
+      <i class="mail icon"></i> 23
+    </div>
+    
+    <div class="ui left vertical menu sidebar">
+      <a class="item">
+        Item 1
+      </a>
+      <a class="item">
+        Item 2
+      </a>
+      <a class="item">
+        Item 3
+      </a>
+    </div>
+    
+    <button id="test">test</button>
+
+    <script src="/vendor/jquery-3.1.0.min.js"></script>
+    <script src="/semantic/dist/semantic.min.js"></script>
+    
+    <script>
+      $('#test').click(function () {
+        $('.ui.sidebar')
+          .sidebar('toggle')
+        ;
+      });
+    </script>
+    
+  </body>
+</html>
