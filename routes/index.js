@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var _ = require('lodash');
 var moment = require('moment');
-var db = require('../components/db');
+var db = require('../src/components/db');
 
 router.get('/', function (req, res, next) {
   var date = req.query.date;

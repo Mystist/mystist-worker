@@ -3,7 +3,7 @@ var moment = require('moment');
 var Redis = require('ioredis');
 var Promise = require('ioredis').Promise;
 var parser = require('./parser');
-var redisClientConfig = require('../components/redis-client-config');
+var redisClientConfig = require('./components/redis-client-config');
 var redis = new Redis(redisClientConfig);
 
 var dict = {

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var moment = require('moment');
-var db = require('../components/db');
+var db = require('../src/components/db');
 
 router.get('/feeds/:date', function (req, res, next) {
   var date = req.params.date;
